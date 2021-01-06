@@ -25,7 +25,7 @@ class Monotest < MonotestHelper::Async
 
   scenario 'Passing message from ws to amqp' do |success, failture|
     EventMachine::Timer.new(1) do
-      # failture.call 'Timeout'
+      failture.call 'Timeout'
     end
     connection = AMQP.connect(host: 'localhost')
     ch  = AMQP::Channel.new(connection)
