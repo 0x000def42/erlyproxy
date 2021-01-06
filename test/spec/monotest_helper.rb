@@ -1,12 +1,9 @@
 # frozen_string_literal: true
 
 require 'rspec'
-
-require 'websocket-eventmachine-client'
-require 'byebug'
-
+require 'eventmachine'
 module MonotestHelper
-  class Websocket
+  class Async
     @scenarios = []
     def self.instance
       @instance ||= new

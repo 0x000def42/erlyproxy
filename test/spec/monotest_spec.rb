@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
+require 'amqp'
+require 'websocket-eventmachine-client'
+
 require_relative 'monotest_helper'
-class Monotest < MonotestHelper::Websocket
+class Monotest < MonotestHelper::Async
   scenario 'Socket connection' do |success, failture|
     ws = WebSocket::EventMachine::Client.connect(uri: 'ws://localhost:8080')
     ws.onopen do
