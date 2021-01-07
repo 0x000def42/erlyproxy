@@ -28,7 +28,20 @@ start_link() ->
 
 %% Child :: {Id,StartFunc,Restart,Shutdown,Type,Modules}
 init([]) ->
-    {ok, { {one_for_all, 0, 1}, []} }.
+    {ok, { {one_for_all, 0, 1}, [
+        {
+            amqp_client_sup,
+            {
+                amqp_client_sup,
+                start_link,
+                []
+            },
+            transient,
+            infinity,
+            supervisor,
+            [amqp_client_sup]
+        }
+    ]} }.
 
 %%====================================================================
 %% Internal functions

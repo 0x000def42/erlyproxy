@@ -29,8 +29,7 @@ start(_StartType, _StartArgs) ->
         env => #{dispatch => Dispatch}
     }),
 
-    erlyproxy_sup:start_link(),
-    amqp_client_sup:start_link().
+    erlyproxy_sup:start_link().
 
 stop(_State) ->
     ok.

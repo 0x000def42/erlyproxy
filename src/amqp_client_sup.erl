@@ -12,5 +12,17 @@ start_link() ->
     supervisor:start_link({local, ?SERVER}, ?MODULE, []).
 
 init([]) ->
-    amqp_client:start_link(),
-    {ok, { {one_for_all, 0, 1}, []} }.
+    {ok, { {one_for_all, 0, 1}, [
+        {
+            amqp_client, 
+            {
+                amqp_client, 
+                start_link, 
+                []
+            },
+            transient,
+            infinity,
+            worker,
+            [amqp_client]
+        }
+    ]}}.
