@@ -8,20 +8,20 @@
 
 
 init(Req, State) ->
-    io:format("websocket connection initiated~n~p~n~nstate: ~p~n", [Req, State]),
     {cowboy_websocket, Req, State}.
 
-websocket_init(_) ->
+websocket_init(_State) ->
     {ok, []}.
 
-
 websocket_handle(Data, State) ->
-    io:format("websocket data from client: ~p~n", [Data]),
+    Pid = self(),
+    amqp_client:request(Pid, Data),
     {ok, State}.
 
+websocket_info({response, Msg}, State) ->
+    {reply, {text, Msg}, State};
 websocket_info(_Info, State) ->
-    {ok, State}.
+ 	{ok, State}.
 
 terminate(_Reason, Req, _State) ->
-    io:format("websocket connection terminated~n~p~n", [maps:get(peer, Req)]),
     ok.
