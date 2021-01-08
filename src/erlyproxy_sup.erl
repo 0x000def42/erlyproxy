@@ -30,16 +30,16 @@ start_link() ->
 init([]) ->
     {ok, { {one_for_all, 0, 1}, [
         {
-            amqp_client_sup,
+            erlyproxy_amqp_client_sup,
             {
-                amqp_client_sup,
+                erlyproxy_amqp_client_sup,
                 start_link,
                 []
             },
             transient,
             infinity,
             supervisor,
-            [amqp_client_sup]
+            [erlyproxy_amqp_client_sup]
         }
     ]} }.
 

@@ -1,4 +1,4 @@
--module(amqp_client_sup).
+-module(erlyproxy_amqp_client_sup).
 
 -behaviour(supervisor).
 
@@ -14,15 +14,15 @@ start_link() ->
 init([]) ->
     {ok, { {one_for_all, 0, 1}, [
         {
-            amqp_client, 
+            erlyproxy_amqp_client, 
             {
-                amqp_client, 
+               erlyproxy_amqp_client, 
                 start_link, 
                 []
             },
             transient,
             infinity,
             worker,
-            [amqp_client]
+            [erlyproxy_amqp_client]
         }
     ]}}.

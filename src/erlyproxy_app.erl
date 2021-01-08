@@ -22,7 +22,7 @@ start(_StartType, _StartArgs) ->
 
     Dispatch = cowboy_router:compile([
         {'_', [
-            {"/", ws_handler, []}
+            {"/", erlyproxy_ws_handler, []}
         ]}
     ]),
     {ok, _} = cowboy:start_clear(http, [{port, list_to_integer(Port)}], #{

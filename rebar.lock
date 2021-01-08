@@ -1,3 +1,4 @@
+{"1.1.0",
 [{<<"cowboy">>,
   {git,"git://github.com/ninenines/cowboy.git",
        {ref,"63b17e4edf666d995ec86cdcda17a62ba5ebc423"}},
@@ -6,10 +7,14 @@
   {git,"https://github.com/ninenines/cowlib",
        {ref,"c6553f8308a2ca5dcd69d845f0a7d098c40c3363"}},
   1},
+ {<<"credentials_obfuscation">>,
+  {pkg,<<"credentials_obfuscation">>,<<"2.2.0">>},
+  1},
  {<<"ejson">>,
   {git,"https://github.com/jonasrichard/ejson.git",
        {ref,"5838272523e7acb9012c7c5334bad98c69b481af"}},
   0},
+ {<<"goldrush">>,{pkg,<<"goldrush">>,<<"0.1.9">>},2},
  {<<"jiffy">>,
   {git,"https://github.com/davisp/jiffy.git",
        {ref,"2f73ba9afd05a0169b84a77d23ecf4524914f609"}},
@@ -18,7 +23,18 @@
   {git,"https://github.com/talentdeficit/jsx.git",
        {ref,"a45c997cedc3bcc0bb014ac3faa7ec16bcd4f7b1"}},
   0},
+ {<<"lager">>,{pkg,<<"lager">>,<<"3.8.0">>},1},
+ {<<"rabbit_common">>,{pkg,<<"rabbit_common">>,<<"3.8.7">>},0},
  {<<"ranch">>,
   {git,"https://github.com/ninenines/ranch",
        {ref,"3190aef88aea04d6dce8545fe9b4574288903f44"}},
-  1}].
+  1},
+ {<<"recon">>,{pkg,<<"recon">>,<<"2.5.1">>},1}]}.
+[
+{pkg_hash,[
+ {<<"credentials_obfuscation">>, <<"F8040672FF9644CCAEFC40FFB8EC33ED80AC77DF84AC5F206A1C079CA2AACC9D">>},
+ {<<"goldrush">>, <<"F06E5D5F1277DA5C413E84D5A2924174182FB108DABB39D5EC548B27424CD106">>},
+ {<<"lager">>, <<"3402B9A7E473680CA179FC2F1D827CAB88DD37DD1E6113090C6F45EF05228A1C">>},
+ {<<"rabbit_common">>, <<"CED67A55CFA994B4EBD8D7763C85E4A25275F067A63FF0A71D7E5C66BD447C8E">>},
+ {<<"recon">>, <<"430FFA60685AC1EFDFB1FE4C97B8767C92D0D92E6E7C3E8621559BA77598678A">>}]}
+].

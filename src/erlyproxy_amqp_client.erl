@@ -1,4 +1,4 @@
--module(amqp_client).
+-module(erlyproxy_amqp_client).
 -compile({parse_transform, ejson_trans}).
 -behaviour(gen_server).
 

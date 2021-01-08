@@ -1,4 +1,4 @@
--module(ws_handler).
+-module(erlyproxy_ws_handler).
 
 -export([init/2]).
 -export([websocket_init/1]).
@@ -15,7 +15,7 @@ websocket_init(_State) ->
 
 websocket_handle({text, BinaryJsonString}, State) ->
     Pid = self(),
-    amqp_client:request(Pid, BinaryJsonString),
+    erlyproxy_amqp_client:request(Pid, BinaryJsonString),
     {ok, State};
 websocket_handle(Data, State) ->
     io:format("Unhandled websocket_handle data ~p~n", [Data]),
