@@ -13,9 +13,12 @@ init(Req, State) ->
 websocket_init(_State) ->
     {ok, []}.
 
-websocket_handle(Data, State) ->
+websocket_handle({text, BinaryJsonString}, State) ->
     Pid = self(),
-    amqp_client:request(Pid, Data),
+    amqp_client:request(Pid, BinaryJsonString),
+    {ok, State};
+websocket_handle(Data, State) ->
+    io:format("Unhandled websocket_handle data ~p~n", [Data]),
     {ok, State}.
 
 websocket_info({response, Msg}, State) ->
