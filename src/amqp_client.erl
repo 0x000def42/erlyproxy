@@ -28,7 +28,7 @@ handle_call(Request, _From, State) ->
 
 handle_cast({request, Client, BinaryJsonString}, State) ->
   {ok, Request} = from_json(BinaryJsonString, request),
-  #request{target=Target, host=Host, action=Action} = Request,
+  #request{target=Target, action=Action, payload=Payload} = Request,
   % TODO: Post message to queue here
   {noreply, State};
 handle_cast(Request, State) ->
