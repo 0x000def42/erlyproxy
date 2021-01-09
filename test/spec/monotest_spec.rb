@@ -28,12 +28,12 @@ class Monotest < MonotestHelper::Async
       failture.call 'Timeout'
     end
     connection = AMQP.connect(host: 'localhost')
-    ch  = AMQP::Channel.new(connection)
-    q   = ch.queue('host_request', auto_delete: true)
+    ch = AMQP::Channel.new(connection)
+    q = ch.queue('host_request')
 
     q.subscribe do |_metadata, payload|
       data = JSON.parse(payload)
-      if data['payload'] == 'any' && !data['id'].nil?
+      if data['payload'] == 'any' && !data['client'].nil?
         success.call
       else
         failture.call "Unexpected payload: #{payload}"

@@ -1,5 +1,6 @@
 {"1.1.0",
-[{<<"cowboy">>,
+[{<<"amqp_client">>,{pkg,<<"amqp_client">>,<<"3.8.7">>},0},
+ {<<"cowboy">>,
   {git,"git://github.com/ninenines/cowboy.git",
        {ref,"63b17e4edf666d995ec86cdcda17a62ba5ebc423"}},
   0},
@@ -32,6 +33,7 @@
  {<<"recon">>,{pkg,<<"recon">>,<<"2.5.1">>},1}]}.
 [
 {pkg_hash,[
+ {<<"amqp_client">>, <<"3C882607E5C9ADCA33679D7F2C767345DE100303FD200BDB620FFF7DC3A84C77">>},
  {<<"credentials_obfuscation">>, <<"F8040672FF9644CCAEFC40FFB8EC33ED80AC77DF84AC5F206A1C079CA2AACC9D">>},
  {<<"goldrush">>, <<"F06E5D5F1277DA5C413E84D5A2924174182FB108DABB39D5EC548B27424CD106">>},
  {<<"lager">>, <<"3402B9A7E473680CA179FC2F1D827CAB88DD37DD1E6113090C6F45EF05228A1C">>},
