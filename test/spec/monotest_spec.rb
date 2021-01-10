@@ -5,9 +5,17 @@ require 'websocket-eventmachine-client'
 require 'json'
 
 require_relative 'monotest_helper'
+
+
+
 class Monotest < MonotestHelper::Async
+  a_ws = -> { WebSocket::EventMachine::Client.connect(uri: 'ws://localhost:8080') }
+  a_connection = -> { AMQP.connect(host: 'localhost') }
+  a_channel = -> { AMQP::Channel.new(a_connection.call) }
+  a_queue = -> { a_channel.call.queue('host_request') }
+
   scenario 'Socket connection' do |success, failture|
-    ws = WebSocket::EventMachine::Client.connect(uri: 'ws://localhost:8080')
+    ws = a_ws.call
     ws.onopen do
       ws.close
     end
@@ -27,11 +35,8 @@ class Monotest < MonotestHelper::Async
     EventMachine::Timer.new(1) do
       failture.call 'Timeout'
     end
-    connection = AMQP.connect(host: 'localhost')
-    ch = AMQP::Channel.new(connection)
-    q = ch.queue('host_request')
-
-    q.subscribe do |_metadata, payload|
+    queue = a_queue.call
+    queue.subscribe do |_metadata, payload|
       data = JSON.parse(payload)
       if data['payload'] == 'any' && !data['client'].nil?
         success.call
@@ -39,8 +44,7 @@ class Monotest < MonotestHelper::Async
         failture.call "Unexpected payload: #{payload}"
       end
     end
-
-    ws = WebSocket::EventMachine::Client.connect(uri: 'ws://localhost:8080')
+    ws = a_ws.call
     ws.onopen do
       request = { target: 'host', action: 'request', payload: 'any' }
       ws.send(JSON.generate(request))

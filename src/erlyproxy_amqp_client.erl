@@ -55,7 +55,7 @@ handle_cast({request, Client, BinaryJsonString}, State) ->
   {Queue, State1} = get_queue(State, utils:concat([Target, "_", Action], binary)),
   Publish = #'basic.publish'{exchange = <<>>, routing_key = Queue},
   Reponse = #amqp_msg{payload = Message},
-  amqp_channel:cast(get_channel(State), Publish, Reponse),
+  amqp_channel:cast(dict:fetch(channel, State), Publish, Reponse),
   {noreply, State};
 handle_cast(Request, State) ->
   io:format("Unhandled cast: ~p~n", [Request]),
